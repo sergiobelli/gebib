@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <head>                  
+       <title>.: GeBib :.</title>
+       <link rel="stylesheet" type="text/css" href="../../css/stylesheet.css" />       
+    </head>
+	
+	<body>
+	
+		<ui:insert name="javascript">
+		
+		</ui:insert>
+		
+		<div style="position:absolute;left:0px;top:10px;padding-bottom:50px" class="menu">
+			<ui:insert name="menu">
+				<h:form id="menuForm">
+
+					<h:outputText>
+					    <div>Autori</div>
+					    <h:commandLink styleClass="x_hoverable_" value="&#45; &#32; Inserisci Autore" 	action="#{GeBibMenu.inserisciAutore}" />
+					    <h:commandLink styleClass="x_hoverable_" value="&#45; &#32; Elenco Autori"   		action="#{GeBibMenu.elencoAutori}" />    
+					</h:outputText>
+
+					<h:outputText>
+					    <div>Libri</div>
+					    <h:commandLink styleClass="x_hoverable_" value="&#45; &#32; Inserisci Libro" 	action="#{GeBibMenu.inserisciLibro}" />
+					    <h:commandLink styleClass="x_hoverable_" value="&#45; &#32; Elenco Libri"   		action="#{GeBibMenu.elencoLibri}" />    
+					</h:outputText>
+
+					<h:outputText>
+					    <div>Report</div>
+					    <h:commandLink styleClass="x_hoverable_" value="&#45; &#32; Genera Report" action="#{GeBibMenu.generaReport}" />
+					</h:outputText>
+
+					<h:outputText>
+					    <div>Properties</div>
+					    <h:commandLink styleClass="x_hoverable_" value="&#45; &#32; Inserisci Properties" 	action="#{GeBibMenu.inserisciProperties}" />
+					    <h:commandLink styleClass="x_hoverable_" value="&#45; &#32; Elenco Properties"   	action="#{GeBibMenu.elencoProperties}" />    
+					</h:outputText>
+					
+				</h:form>
+			</ui:insert>
+		</div>
+
+		<div style="position:absolute;top:10px;left:190px;width:auto;padding-right:8px;padding-bottom:50px">
+    		<h1 style="margin-left:16px;color:#cc0000">
+    			<ui:insert name="title"/>
+    		</h1>
+		</div>
+
+
+		<div style="position:absolute;top:10px;left:190px;width:auto;padding-right:8px;padding-bottom:50px">
+ 
+	    	<h:messages class="FacetFieldCaptionTD"/>
+	
+	    	<ui:insert name="body" />
+		</div>
+	
+	</body>
+	
+</html>

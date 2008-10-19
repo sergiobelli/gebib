@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!DOCTYPE struts-config PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+        "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+
+    
+      
+    <form-beans type="org.apache.struts.webapp.examples.CustomFormBean">
+               
+        <form-bean
+      		name="InserisciAutoreForm"
+      		type="eu.sergiobelli.gebib.autori.ctrl.form.InserisciAutoreForm"/>
+      
+    </form-beans>
+
+    
+    <global-exceptions/>
+
+   
+    <global-forwards/>
+
+    
+    <action-mappings>
+        
+        <action
+		        path="/main/InserisciAutore"
+		        type="eu.sergiobelli.gebib.autori.ctrl.action.InserisciAutoreAction"
+		        name="inserisciAutoreForm"
+		        scope="session"
+		        input="/main/InserisciAutore.jsp"
+		        unknown="false"
+		        validate="true" >
+	        
+	        <forward name="success"    path="/main/ElencoAutori.jsp"/>
+	        <forward name="failure"    path="/main/InserisciAutore.jsp"/>
+	        
+    	</action>
+    
+    </action-mappings>
+
+    <message-resources parameter="MessageResources"/>
+
+</struts-config>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Competizione">
+
+  <typeAlias alias="Competizione" type="org.sbelli.gecomp.orm.model.Competizione"/>
+
+  <resultMap id="CompetizioneResult" class="Competizione">
+    <result property="idCompetizione" column="ID_COMPETIZIONE"/>
+    <result property="dataInizio" column="DATA_INIZIO"/>
+    <result property="dataFine" column="DATA_FINE"/>
+    <result property="nome" column="NOME"/>
+    <result property="descrizione" column="DESCRIZIONE"/>
+    <result property="societaOrganizzatrice" column="SOCIETA_ORGANIZZATRICE" select="getSocietaOrganizzatrice" />
+  </resultMap>
+
+  <resultMap id="SocietaResult" class="org.sbelli.gecomp.orm.model.Societa">
+    <result property="idSocieta" column="ID_SOCIETA"/>
+    <result property="nomeSocieta" column="NOME_SOCIETA"/>
+  </resultMap>
+  <select id="getSocietaOrganizzatrice" resultMap="SocietaResult">  
+    select * from SOCIETA where ID_SOCIETA = #idSocieta#    
+  </select>
+
+  <select id="listCompetizione" resultMap="CompetizioneResult">
+    select * from COMPETIZIONE
+  </select>
+
+  <select id="selectCompetizione" parameterClass="int" resultClass="Competizione">
+    
+    select
+    
+      C.ID_COMPETIZIONE as idCompetizione,
+      C.DATA_INIZIO as dataInizio,
+      C.DATA_FINE as dataFine,
+      C.NOME as nome,
+      C.DESCRIZIONE as descrizione,
+      C.SOCIETA_ORGANIZZATRICE as "societaOrganizzatrice.idSocieta",
+        S.NOME_SOCIETA as "societaOrganizzatrice.nomeSocieta"
+        
+    from COMPETIZIONE C, SOCIETA S
+    
+    where 	C.ID_COMPETIZIONE = #idCompetizione#
+    		AND C.SOCIETA_ORGANIZZATRICE = S.ID_SOCIETA
+    		
+  </select>
+   
+  <insert id="insertCompetizione" parameterClass="Competizione">
+    insert into COMPETIZIONE (
+      ID_COMPETIZIONE,
+      DATA_INIZIO,
+      DATA_FINE,
+      NOME,
+      DESCRIZIONE,
+      SOCIETA_ORGANIZZATRICE )     
+    values (
+      #idCompetizione#, #dataInizio#, #dataFine#, #nome#, #descrizione#, #societaOrganizzatrice.idSocieta#
+    )
+  </insert>
+
+  <update id="updateCompetizione" parameterClass="Competizione">
+    update COMPETIZIONE set
+      ID_COMPETIZIONE = #idCompetizione#,
+      DATA_INIZIO = #dataInizio#,
+      DATA_FINE = #dataFine#,
+      NOME = #nome#,
+      DESCRIZIONE = #descrizione#,
+      SOCIETA_ORGANIZZATRICE = #societaOrganizzatrice.idSocieta#
+    where
+      ID_COMPETIZIONE = #idCompetizione#
+  </update>
+
+  <delete id="deleteCompetizione" parameterClass="int">
+    delete from COMPETIZIONE where ID_COMPETIZIONE = #idCompetizione#
+  </delete>
+  
+</sqlMap>

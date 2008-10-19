@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="../template/Template.xhtml">
+	
+		<ui:define name="title">
+			
+		</ui:define>
+		
+		<ui:define name="body">
+    
+        	<h:form>
+            	
+            	<h:panelGrid columns="1" styleClass="FacetFormTABLE" columnClasses="FacetFieldCaptionTD,FacetDataTD">	
+	            	
+	            	<h:outputText value="Interfaccia di modifica libro" styleClass="FacetFieldCaptionTD"/>
+	            		
+	            	<h:inputHidden value="#{ModificaLibroExecuter.idLibro}" />
+	            		
+	            	<h:panelGrid columns="2" styleClass="FacetFormTABLE" columnClasses="FacetFieldCaptionTD,FacetDataTD">
+	            		
+	            		<h:outputText value="Titolo"/>
+	            		<h:inputText value="#{ModificaLibroExecuter.titolo}" class="FacetInput" />
+					
+		            	<h:outputText value="Isbn"/>
+		            	<h:inputText value="#{ModificaLibroExecuter.isbn}" class="FacetInput" />
+	       
+	       	            <h:outputText value="Autore"/>
+		            	<h:selectManyListbox    id="autore" 	value="#{ModificaLibroExecuter.autoriSelected}" >
+		                	<f:convertNumber type="number" />
+							<f:selectItems   value="#{ModificaLibroExecuter.autori}" />
+		                </h:selectManyListbox>
+		            	
+		            	<h:outputText value="&nbsp;"/>
+		            	<h:commandButton action="#{ModificaLibroExecuter.salva}" value="Inserisci" class="FacetButton" />
+						
+					</h:panelGrid>
+				
+				</h:panelGrid>
+				
+			</h:form>
+					
+		</ui:define>
+	
+	</ui:composition>
+
+</html>

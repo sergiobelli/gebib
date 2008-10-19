@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30-ott-2007 15.04.33 by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="eu.sergiobelli.gebib.model.orm.data.Libri" lazy="false" table="libri" catalog="biblioteca">
+        
+        
+        
+        <!-- idLibro -->
+        <id name="idLibro" type="int">
+            <column name="ID_LIBRO" />
+            <generator class="assigned" />
+        </id>
+        <property name="titolo" type="string">
+            <column name="TITOLO" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        
+        
+        
+        <!-- autori -->
+        <!--<property name="autore" type="int">
+            <column name="AUTORE" not-null="true">
+                <comment></comment>
+            </column>
+        </property>-->
+		<!--<many-to-one name="autore" lazy="false" class="eu.sergiobelli.gebib.model.orm.data.Autori" fetch="select">
+			<column name="AUTORE" not-null="true" />
+		</many-to-one>-->
+		<set name="autori" table="publicazioni" lazy="false" inverse="true">            
+            <key>
+				<column name="ID_LIBRO" precision="22" scale="0" not-null="true" />
+			</key>
+			<many-to-many entity-name="eu.sergiobelli.gebib.model.orm.data.Autori">
+				<column name="ID_AUTORE" precision="22" scale="0" not-null="true" />
+			</many-to-many>
+		</set>		
+		
+		
+		
+		<!-- isbn -->    
+        <property name="isbn" type="string">
+            <column name="ISBN" not-null="false">
+                <comment></comment>
+            </column>
+        </property>
+        
+    </class>
+    
+</hibernate-mapping>

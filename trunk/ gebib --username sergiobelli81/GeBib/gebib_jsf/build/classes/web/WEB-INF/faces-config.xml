@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
+    version="1.2">
+
+<!-- 
+<!DOCTYPE faces-config PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.0//EN" "http://java.sun.com/dtd/web-facesconfig_1_0.dtd">
+
+<faces-config>
+ -->
+ 
+  <application>
+    <!-- tell JSF to use Facelets -->
+    <view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
+  </application>
+
+<!-- GeComp Menu -->
+	<navigation-rule>
+
+		<!-- Autori -->
+ 		<navigation-case>
+       		<from-outcome>inserisciAutore</from-outcome>
+       		<to-view-id>/main/autori/inserisciAutore.xhtml</to-view-id>
+    	</navigation-case>
+    	 <navigation-case>
+       		<from-outcome>modificaAutore</from-outcome>
+       		<to-view-id>/main/autori/modificaAutore.xhtml</to-view-id>
+    	</navigation-case>
+    	<navigation-case>
+       		<from-outcome>elencoAutori</from-outcome>
+       		<to-view-id>/main/autori/elencoAutori.xhtml</to-view-id>
+    	</navigation-case>
+
+		<!-- Libri -->
+		<navigation-case>
+        	<from-outcome>inserisciLibro</from-outcome>
+      		<to-view-id>/main/libri/inserisciLibro.xhtml</to-view-id>
+   		</navigation-case>
+		<navigation-case>
+        	<from-outcome>modificaLibro</from-outcome>
+      		<to-view-id>/main/libri/modificaLibro.xhtml</to-view-id>
+   		</navigation-case>
+   		<navigation-case>
+      		<from-outcome>elencoLibri</from-outcome>
+      		<to-view-id>/main/libri/elencoLibri.xhtml</to-view-id>
+   		</navigation-case>
+    	
+    	<!-- Properties -->
+		<navigation-case>
+        	<from-outcome>inserisciProperties</from-outcome>
+      		<to-view-id>/main/properties/inserisciProperties.xhtml</to-view-id>
+   		</navigation-case>
+		<navigation-case>
+        	<from-outcome>modificaProperties</from-outcome>
+      		<to-view-id>/main/properties/modificaProperties.xhtml</to-view-id>
+   		</navigation-case>
+   		<navigation-case>
+      		<from-outcome>elencoProperties</from-outcome>
+      		<to-view-id>/main/properties/elencoProperties.xhtml</to-view-id>
+   		</navigation-case>
+   		
+ 	</navigation-rule>
+
+	<!-- GeBib Menu -->
+   <navigation-rule>
+      <from-view-id>/main/login/login.xhtml</from-view-id>
+      <navigation-case>
+         <from-outcome>loginDone</from-outcome>
+         <to-view-id>/main/home/home.xhtml</to-view-id>
+      </navigation-case>
+      <navigation-case>
+         <from-outcome>loginFailed</from-outcome>
+         <to-view-id>/main/login/login.xhtml</to-view-id>
+      </navigation-case>
+   </navigation-rule>
+
+<!-- GeBib Home -->
+   <navigation-rule>
+      <navigation-case>
+         <from-outcome>home</from-outcome>
+         <to-view-id>/main/home/home.xhtml</to-view-id>
+      </navigation-case>      
+   </navigation-rule>
+
+<!-- GeBib Report -->
+   <navigation-rule>
+      <navigation-case>
+         <from-outcome>generaReport</from-outcome>
+         <to-view-id>/main/report/report.xhtml</to-view-id>
+      </navigation-case>      
+   </navigation-rule>
+   
+   <managed-bean> 
+      <managed-bean-name>GeBibMenu</managed-bean-name>
+      <managed-bean-class>eu.sergiobelli.gebib.control.menu.GeBibMenu</managed-bean-class> 
+      <managed-bean-scope>application</managed-bean-scope> 
+   </managed-bean>
+   
+   <managed-bean> 
+      <managed-bean-name>InserisciAutoreExecuter</managed-bean-name>
+      <managed-bean-class>eu.sergiobelli.gebib.control.autori.InserisciAutoreExecuter</managed-bean-class> 
+      <managed-bean-scope>request</managed-bean-scope> 
+   </managed-bean>
+   <managed-bean> 
+      <managed-bean-name>ModificaAutoreExecuter</managed-bean-name>
+      <managed-bean-class>eu.sergiobelli.gebib.control.autori.ModificaAutoreExecuter</managed-bean-class> 
+      <managed-bean-scope>session</managed-bean-scope> 
+   </managed-bean>
+   <managed-bean> 
+      <managed-bean-name>ElencoAutoriExecuter</managed-bean-name>
+      <managed-bean-class>eu.sergiobelli.gebib.control.autori.ElencoAutoriExecuter</managed-bean-class> 
+      <managed-bean-scope>request</managed-bean-scope> 
+   </managed-bean>
+
+   <managed-bean> 
+      <managed-bean-name>InserisciLibroExecuter</managed-bean-name>
+      <managed-bean-class>eu.sergiobelli.gebib.control.libri.InserisciLibroExecuter</managed-bean-class> 
+      <managed-bean-scope>request</managed-bean-scope> 
+   </managed-bean>
+   <managed-bean> 
+      <managed-bean-name>ModificaLibroExecuter</managed-bean-name>
+      <managed-bean-class>eu.sergiobelli.gebib.control.libri.ModificaLibroExecuter</managed-bean-class> 
+      <managed-bean-scope>request</managed-bean-scope> 
+   </managed-bean>
+   <managed-bean> 
+      <managed-bean-name>ElencoLibriExecuter</managed-bean-name>
+      <managed-bean-class>eu.sergiobelli.gebib.control.libri.ElencoLibriExecuter</managed-bean-class> 
+      <managed-bean-scope>request</managed-bean-scope> 
+   </managed-bean>  
+
+   <managed-bean> 
+      <managed-bean-name>InserisciPropertiesExecuter</managed-bean-name>
+      <managed-bean-class>eu.sergiobelli.gebib.control.properties.InserisciPropertiesExecuter</managed-bean-class> 
+      <managed-bean-scope>request</managed-bean-scope> 
+   </managed-bean>
+   <managed-bean> 
+      <managed-bean-name>ModificaPropertiesExecuter</managed-bean-name>
+      <managed-bean-class>eu.sergiobelli.gebib.control.properties.ModificaPropertiesExecuter</managed-bean-class> 
+      <managed-bean-scope>request</managed-bean-scope> 
+   </managed-bean>
+   <managed-bean> 
+      <managed-bean-name>ElencoPropertiesExecuter</managed-bean-name>
+      <managed-bean-class>eu.sergiobelli.gebib.control.properties.ElencoPropertiesExecuter</managed-bean-class> 
+      <managed-bean-scope>request</managed-bean-scope> 
+   </managed-bean> 
+   
+   <managed-bean> 
+      <managed-bean-name>GeBibSession</managed-bean-name>
+      <managed-bean-class>eu.sergiobelli.gebib.model.session.GeBibSession</managed-bean-class> 
+      <managed-bean-scope>session</managed-bean-scope> 
+   </managed-bean>
+
+   <managed-bean> 
+      <managed-bean-name>ReportManager</managed-bean-name>
+      <managed-bean-class>eu.sergiobelli.gebib.control.report.ReportManager</managed-bean-class> 
+      <managed-bean-scope>session</managed-bean-scope> 
+   </managed-bean>
+
+   <managed-bean> 
+      <managed-bean-name>AutoreValidator</managed-bean-name>
+      <managed-bean-class>eu.sergiobelli.gebib.validator.autori.AutoreValidator</managed-bean-class> 
+      <managed-bean-scope>application</managed-bean-scope> 
+   </managed-bean>
+      
+   <managed-bean> 
+      <managed-bean-name>LibroValidator</managed-bean-name>
+      <managed-bean-class>eu.sergiobelli.gebib.validator.libri.LibroValidator</managed-bean-class> 
+      <managed-bean-scope>application</managed-bean-scope> 
+   </managed-bean>
+   
+   <managed-bean> 
+      <managed-bean-name>PropertiesValidator</managed-bean-name>
+      <managed-bean-class>eu.sergiobelli.gebib.validator.properties.PropertiesValidator</managed-bean-class> 
+      <managed-bean-scope>application</managed-bean-scope> 
+   </managed-bean>
+      
+   <managed-bean> 
+      <managed-bean-name>ReportValidator</managed-bean-name>
+      <managed-bean-class>eu.sergiobelli.gebib.validator.report.ReportValidator</managed-bean-class> 
+      <managed-bean-scope>application</managed-bean-scope> 
+   </managed-bean>      
+      
+   <validator>
+       <validator-id>eu.sergiobelli.gebib.validator.autori.CognomeValidator</validator-id>
+       <validator-class>eu.sergiobelli.gebib.validator.autori.CognomeValidator</validator-class>
+   </validator>
+   <validator>
+       <validator-id>eu.sergiobelli.gebib.validator.autori.NomeValidator</validator-id>
+       <validator-class>eu.sergiobelli.gebib.validator.autori.NomeValidator</validator-class>
+   </validator>   
+   
+      
+</faces-config>
