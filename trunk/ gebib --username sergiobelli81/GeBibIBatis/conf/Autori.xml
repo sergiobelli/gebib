@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Autori">
+
+  <typeAlias alias="Autori" type="eu.sergiobelli.gebib.model.orm.data.Autori"/>
+
+
+  <resultMap id="AutoriResult" class="Autori">
+    <result property="idAutore" column="ID_AUTORE"/>
+    <result property="nome" column="NOME"/>
+    <result property="cognome" column="COGNOME"/>
+  </resultMap>
+
+  <select id="listAutori" resultMap="AutoriResult">
+    select * from Autori
+  </select>
+
+  <select id="selectAutori" parameterClass="int" resultClass="Autori">
+    select
+      ID_AUTORE as idAutore,
+      NOME as nome,
+      COGNOME as cognome
+    from Autori
+    where ID_AUTORE = #idAutore#
+  </select>
+   
+  <insert id="insertAutori" parameterClass="Autori">
+    insert into Autori ( ID_AUTORE, NOME, COGNOME ) 
+    values ( #idAutore#, #nome#, #cognome# )
+  </insert>
+
+  <update id="updateAutori" parameterClass="Autori">
+    update Autori set
+      ID_AUTORE = #idAutore#,
+      NOME = #nome#,
+      COGNOME = #cognome#
+    where
+      ID_AUTORE = #idAutore#
+  </update>
+
+  <delete id="deleteAutori" parameterClass="int">
+    delete from Autori where ID_AUTORE = #idAutore#
+  </delete>
+
+</sqlMap>
