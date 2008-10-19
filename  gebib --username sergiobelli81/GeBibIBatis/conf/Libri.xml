@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="libri">
+
+  <typeAlias alias="libri" type="eu.sergiobelli.gebib.model.orm.data.Libri"/>
+	
+  <resultMap id="LibriResult" class="libri">
+    <result property="idLibro" 	column="ID_LIBRO"/>
+    <result property="titolo" 	column="TITOLO"/>
+    <result property="isbn" 	column="ISBN"/>
+  </resultMap>
+
+  <select id="listLibri" resultMap="LibriResult">
+    select * from libri
+  </select>
+
+  <select id="selectLibri" parameterClass="int" resultClass="libri">
+    select
+      ID_LIBRO as idLibro,
+      TITOLO as titolo,
+      ISBN as isbn
+    from libri
+    where ID_LIBRO = #idLibro#     
+  </select>
+   
+  <insert id="insertLibri" parameterClass="libri">
+    insert into libri ( ID_LIBRO, TITOLO, ISBN ) 
+    values ( #idLibro#, #titolo#, #isbn# )
+  </insert>
+
+  <update id="updateLibri" parameterClass="libri">
+    update libri set
+      ID_LIBRO = #idLibro#,
+      TITOLO = #titolo#,
+      ISBN = #isbn#
+    where
+      ID_LIBRO = #idLibro#
+  </update>
+
+  <delete id="deleteLibri" parameterClass="int">
+    delete from libri where ID_LIBRO = #idLibro#
+  </delete>
+
+</sqlMap>

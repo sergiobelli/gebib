@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Properties">
+
+  <typeAlias alias="Properties" type="eu.sergiobelli.gebib.model.orm.data.Properties"/>
+
+
+  <resultMap id="PropertiesResult" class="Properties">
+    <result property="id" column="ID"/>
+    <result property="key" column="KEY"/>
+    <result property="value" column="VALUE"/>
+  </resultMap>
+
+  <select id="listProperties" resultMap="PropertiesResult">
+    select * from Properties
+  </select>
+
+  <select id="selectProperties" parameterClass="int" resultClass="Properties">
+    select
+      ID as id,
+      KEY as key,
+      VALUE as value
+    from Properties
+    where ID = #id#
+  </select>
+   
+  <insert id="insertProperties" parameterClass="Properties">
+    insert into Properties ( ID, KEY, VALUE ) 
+    values ( #id#, #key#, #value# )
+  </insert>
+
+  <update id="updateProperties" parameterClass="Properties">
+    update Properties set
+      ID = #id#,
+      KEY = #key#,
+      VALUE = #value#
+    where
+      ID = #id#
+  </update>
+
+  <delete id="deleteProperties" parameterClass="int">
+    delete from Properties where ID = #id#
+  </delete>
+
+</sqlMap>

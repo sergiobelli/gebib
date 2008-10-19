@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="publicazioni">
+
+  <typeAlias alias="publicazioni" type="eu.sergiobelli.gebib.model.orm.data.Publicazioni"/>
+
+
+  <resultMap id="PublicazioniResult" class="publicazioni">
+    <result property="autore" column="ID_AUTORE" select="getAutorePublicazione" />
+    <result property="libro" column="ID_LIBRO" select="getLibroPublicazione" />
+  </resultMap>
+
+  <resultMap id="AutoriResult" class="eu.sergiobelli.gebib.model.orm.data.Autori">
+    <result property="idAutore" column="ID_AUTORE"/>
+    <result property="nome" column="NOME"/>
+    <result property="cognome" column="COGNOME"/>
+  </resultMap>
+  <select id="getAutorePublicazione" resultMap="AutoriResult">
+  	select * from autori where ID_AUTORE = #idAutore#
+  </select>
+  
+  <resultMap id="LibriResult" class="eu.sergiobelli.gebib.model.orm.data.Libri">
+    <result property="idLibro" 	column="ID_LIBRO"/>
+    <result property="titolo" 	column="TITOLO"/>
+    <result property="isbn" 	column="ISBN"/>
+  </resultMap>
+  <select id="getLibroPublicazione" resultMap="LibriResult">
+  	select * from libri where ID_LIBRO = #idLibro#
+  </select>  
+  
+  <select id="listPublicazioni" resultMap="PublicazioniResult">
+    select * from publicazioni
+  </select>
+
+  <select id="selectPublicazioni" parameterClass="int" resultClass="publicazioni">
+	
+	SELECT 	p.ID_AUTORE as "publicazioni.autore",
+				a.nome as "autore.nome",
+				a.cognome as "autore.cognome",
+
+			p.ID_LIBRO as "publicazioni.libro",
+				l.titolo as "libro.titolo",
+				l.isbn as "libro.isbn"
+
+	FROM 	publicazioni p, autori a, libri l
+	WHERE	p.ID_LIBRO = l.ID_LIBRO
+			AND p.ID_AUTORE = a.ID_AUTORE
+			AND p.ID_AUTORE = #idAutore# 
+			AND p.ID_LIBRO = #idLibro#
+			
+  </select>
+   
+  <insert id="insertPublicazioni" parameterClass="publicazioni">
+    insert into publicazioni ( ID_AUTORE, ID_LIBRO ) 
+    values ( #idAutore#, #idLibro# )
+  </insert>
+
+  <update id="updatePublicazioni" parameterClass="publicazioni">
+    update publicazioni set
+      ID_AUTORE = #idAutore#,
+      ID_LIBRO = #idLibro#
+    where
+      ID_AUTORE = #idAutore# and ID_LIBRO = #idLibro#
+  </update>
+
+  <delete id="deletePublicazioni" parameterClass="int">
+    delete from publicazioni where ID_AUTORE = #idAutore# and ID_LIBRO = #idLibro#
+  </delete>
+
+</sqlMap>
