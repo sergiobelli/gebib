@@ -1,0 +1,254 @@
+/* Facet CCSTheme*/
+BODY, TABLE, TH, TR, TD, UL, OL, LI, P, FONT, A, BLOCKQUOTE, LABEL  {
+	font-family : Tahoma, Verdana, Arial, Helvetica;
+	font-size : 13px;
+	color : #504C43;
+}
+
+A:active {
+
+
+}
+
+A:visited {
+
+
+
+}
+
+A:hover {
+	color : Olive;
+	
+}
+
+.FacetPageBODY  {
+
+	bgcolor: #FFFFFF; 
+	color: #000000; 
+	link: #504C43;
+	alink: #000000; 
+	vlink: #504C43; 
+	text: #000000;
+	font-family : Tahoma, Verdana, Arial, Helvetica;
+}
+
+.FacetFormTABLE  {
+	border : solid 1px #000000;
+}
+
+.FacetFormHeaderFont  {
+	color : #000000;
+	font-size : 16px;
+	font-weight : bold;
+   	font-family : Tahoma, Verdana, Arial, Helvetica;
+}
+
+.FacetFieldCaptionTD  {
+	background-color : #EBE9E5;
+	color : #726C5D;
+	font-size : 13px;
+   	font-family : Tahoma, Verdana, Arial, Helvetica;
+}
+
+.FacetDataTD  {
+	background-color : #EFEFEF;
+	color : #000000;
+	font-size : 13px;
+	top : middle;
+   	font-family : Tahoma, Verdana, Arial, Helvetica;
+}
+
+.FacetColumnTD  {
+	color : #504C43;
+	background-color : #E5E1D7;
+	font-size : 13px;
+   	font-family : Tahoma, Verdana, Arial, Helvetica;
+}
+
+.FacetAltDataTD  {
+	background-color : #F6F6F6;
+	color : #000000;
+	font-size : 13px;
+   	font-family : Tahoma, Verdana, Arial, Helvetica;
+}
+
+.FacetSeparatorTD  {
+	background-color : #C2BEB4;
+	height : 1px;
+}
+
+.FacetFooterTD  {
+	background-color : #EBE9E5;
+	color : #726C5D;
+	font-size : 13px;
+   	font-family : Tahoma, Verdana, Arial, Helvetica;
+}
+
+a.FacetSorterLink:link,a.FacetSorterLink:visited  {
+	color : #504C43;
+	font-size : 13px;
+   	font-family : Tahoma, Verdana, Arial, Helvetica;
+	text-decoration : underline;
+}
+
+a.FacetSorterLink:hover,a.FacetSorterLink:active  {
+	color : #000000;
+	font-size : 13px;
+   	font-family : Tahoma, Verdana, Arial, Helvetica;
+	text-decoration : none;
+}
+
+a.FacetDataLink:link,a.FacetDataLink:visited  {
+	color : #504C43;
+	font-size : 13px;
+   	font-family : Tahoma, Verdana, Arial, Helvetica;
+	text-decoration : underline;
+}
+
+a.FacetDataLink:hover,a.FacetDataLink:active  {
+	color : #000000;
+	font-size : 13px;
+   	font-family : Tahoma, Verdana, Arial, Helvetica;
+	text-decoration : none;
+}
+
+a.FacetNavigatorLink:link,a.FacetNavigatorLink:visited  {
+	color : #504C43;
+	text-decoration : underline;
+}
+
+a.FacetNavigatorLink:hover,a.FacetNavigatorLink:active  {
+	color : #000000;
+	text-decoration : none;
+}
+
+.FacetButton  {
+	border-left : 1px solid #000000;
+	border-right : 1px solid #000000;
+	border-top : 1px solid #000000;
+	border-bottom : 1px solid #000000;
+	background-color : #EFEFEF;
+	font-size : 13px;
+	font-family : Tahoma, Verdana, Arial, Helvetica;
+}
+
+.FacetInput  {
+	border-bottom : 1px solid #000000;
+	border-left : 1px solid #000000;
+	border-right : 1px solid #000000;
+	border-top : 1px solid #000000;
+	background-color : #FFFFFF;
+	font-size : 13px;
+	font-family : Tahoma, Verdana, Arial, Helvetica;
+}
+
+.FacetTextarea  {
+	border-bottom : 1px solid #000000;
+	border-left : 1px solid #000000;
+	border-right : 1px solid #000000;
+	border-top : 1px solid #000000;
+	background-color : #FFFFFF;
+	font-size : 13px;
+	font-family : Tahoma, Verdana, Arial, Helvetica;
+}
+
+.FacetSelect  {
+	font-size : 13px;
+	font-family : Tahoma, Verdana, Arial, Helvetica;
+	background-color : #EBE9E5;
+}
+
+.FacetSmall  {
+	font-size : 10px;
+	font-family : Tahoma, Verdana, Arial, Helvetica;;
+}
+
+/**********************************************************
+  Menus
+  divs are headings
+  a are options
+  span are disabled options
+***********************************************************/
+
+div.menu div, div.menu a, div.menu span {
+  color:#ffffff;
+  text-align:left;
+  font-weight: bold;
+  text-decoration: none;
+  font-family : Tahoma, Verdana, Arial, Helvetica;
+  font-size:11px;
+  width:144px;
+  line-height:11px;
+  margin-bottom:-1px;
+  padding-top:4px;
+  padding-bottom:4px;
+  padding-left:5px;
+  padding-right:10px;
+  border-top-width:1px;
+  border-top-style:solid;
+  border-top-color:#ffffff;
+  border-bottom-width:1px;
+  border-bottom-style:solid;
+  border-bottom-color:#ffffff;
+  border-right-width:1px;
+  border-right-style:solid;
+  border-right-color:#ffffff;
+  border-collapse:collapse;
+  display:block;
+}
+
+/* <b> actually un-bolds :-) */
+div.menu b {
+  font-weight:normal;
+}
+
+/* Make the login/password boxes fit in the menu. */
+div.menu input.text {
+  width:110px;
+}
+
+div.menu div {
+  background-color:#EBE9E5;
+  color:#726C5D;
+  cursor:default;
+}
+
+div.menu a {
+  background-color:#444444;
+  cursor:pointer;
+  padding-left:10px;
+  padding-right:5px;
+}
+
+/* use :hover because this is the one type that IE actually supports */
+div.menu a:hover {
+  background-color:#cc0000;
+}
+
+div.menu span {
+  background-color:#222222;
+  color:#888888;
+  cursor:pointer;
+  padding-left:10px;
+  padding-right:5px;
+}
+
+div.menu span.x_hover_ {
+  background-color:#660000;
+}
+
+div.hr {
+  border-style:none;
+  border-width:0;
+  background:#c0c0c0;
+  margin-left:3px;
+  margin-right:3px;
+  height:2px;
+  font-size:0;
+  margin-top:6px;
+  margin-bottom:10px;
+}
+.hidden {
+  visibility:hidden;
+  display:none;
+}

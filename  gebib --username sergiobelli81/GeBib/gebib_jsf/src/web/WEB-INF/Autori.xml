@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Categoria">
+
+  <typeAlias alias="Categoria" type="org.sbelli.gecomp.orm.model.Categoria"/>
+
+
+  <resultMap id="CategoriaResult" class="Categoria">
+    <result property="idCategoria" column="ID_CATEGORIA"/>
+    <result property="nomeCategoria" column="NOME_CATEGORIA"/>
+    <result property="sesso" column="SESSO"/>
+    <result property="annoPartenza" column="ANNO_PARTENZA"/>
+    <result property="annoFine" column="ANNO_FINE"/>
+  </resultMap>
+
+  <select id="listCategoria" resultMap="CategoriaResult">
+    select * from CATEGORIA
+  </select>
+
+  <select id="selectCategoria" parameterClass="int" resultClass="Categoria">
+    select
+      ID_CATEGORIA as idCategoria,
+      NOME_CATEGORIA as nomeCategoria,
+      SESSO as sesso,
+      ANNO_PARTENZA as annoPartenza,
+      ANNO_FINE as annoFine
+    from CATEGORIA
+    where ID_CATEGORIA = #idCategoria#
+  </select>
+   
+  <insert id="insertCategoria" parameterClass="Categoria">
+    insert into CATEGORIA ( ID_CATEGORIA, NOME_CATEGORIA, SESSO, ANNO_PARTENZA, ANNO_FINE ) 
+    values ( #idCategoria#, #nomeCategoria#, #sesso#, #annoPartenza#, #annoFine# )
+  </insert>
+
+  <update id="updateCategoria" parameterClass="Categoria">
+    update Categoria set
+      ID_CATEGORIA = #idCategoria#,
+      NOME_CATEGORIA = #nomeCategoria#,
+      SESSO = #sesso#,
+      ANNO_PARTENZA = #annoPartenza#,
+      ANNO_FINE = #annoFine#
+    where
+      ID_CATEGORIA = #idCategoria#
+  </update>
+
+  <delete id="deleteCategoria" parameterClass="int">
+    delete from CATEGORIA where ID_CATEGORIA = #idCategoria#
+  </delete>
+
+</sqlMap>

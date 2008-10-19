@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+
+<project name="GeBib-Orm" default="dist">
+
+   <property file="build.properties"/>
+
+   <path id="project.classpath">
+      <fileset dir="${lib.dir}" includes="**/*.jar" excludes="**/${jar.file}"/>
+   </path>
+
+	 <target name="test">
+	    <mkdir dir="${run.dir}"/>
+	    <copy todir="${run.dir}">
+	      <fileset dir="conf/" includes="*.*"/>
+	    </copy>
+	    <java dir="${run.dir}" fork="yes" classname="junit.textui.TestRunner"  failonerror="true">
+	      <arg value="test.org.sbelli.gecomp.orm.GeCompDaoTestSuite"/>
+	      <classpath>
+	        <fileset dir="${lib.dir}" includes="**/*.*"/>
+	        <pathelement location="${classes.dir}"/>
+	        <pathelement path="${run.dir}"/>
+	      </classpath>
+	    </java>
+	  </target>
+	  
+	  <target name="clean" description="Clean the project">
+        <echo message="Cleaning..."/>
+        <delete quiet="true" dir="${build.dir}"/>
+        <delete quiet="true" dir="${dist.dir}"/>
+        <delete quiet="true" dir="${classes.dir}"/>
+    </target>
+    
+    <target name="init" depends="clean">
+        <mkdir dir="${dist.dir}"/>
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${classes.dir}"/>
+        <mkdir dir="${classes.dir}/META-INF"/>
+    </target>
+	  
+	  <target name="build" depends="clean,init">
+	     <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="project.classpath" debug="on"/>
+	     <copy todir="${classes.dir}" overwrite="true">
+	     	<fileset dir="${conf.dir}/" includes="*.*"/>
+	     </copy>
+	  </target>
+	  
+	  <target name="dist" depends="build">
+	     <jar jarfile="${dist.dir}/${jar.file}" basedir="${classes.dir}"/>      
+	  </target>
+	  
+	  <target name="deploy" depends="dist">
+        <copy  file="${dist.dir}/${jar.file}" todir="${lib.dir}"/>
+    </target>
+	  
+</project>
+

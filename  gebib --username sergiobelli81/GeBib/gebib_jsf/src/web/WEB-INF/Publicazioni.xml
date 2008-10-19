@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="CategoriaCompetizione">
+
+  <typeAlias alias="CategoriaCompetizione" type="org.sbelli.gecomp.orm.model.CategoriaCompetizione"/>
+
+  <resultMap id="CategoriaCompetizioneResult" class="CategoriaCompetizione">
+    <result property="idCategoriaCompetizione" column="ID_CATEGORIA_COMPETIZIONE"/>
+    <result property="categoria" column="CATEGORIA" select="getCategoriaCompetizione" />
+    <result property="competizione" column="COMPETIZIONE" select="getCompetizioneCategoria" />
+  </resultMap>
+
+  <resultMap id="CategoriaResult" class="Categoria">
+    <result property="idCategoria" column="ID_CATEGORIA"/>
+    <result property="nomeCategoria" column="NOME_CATEGORIA"/>
+    <result property="sesso" column="SESSO"/>
+    <result property="annoPartenza" column="ANNO_PARTENZA"/>
+    <result property="annoFine" column="ANNO_FINE"/>
+  </resultMap>
+  <select id="getCategoriaCompetizione" resultMap="CategoriaResult">
+  	select * from CATEGORIA where ID_CATEGORIA = #idCategoria#
+  </select>
+
+  <resultMap id="CompetizioneResult" class="Competizione">
+    <result property="idCompetizione" column="ID_COMPETIZIONE"/>
+    <result property="dataInizio" column="DATA_INIZIO"/>
+    <result property="dataFine" column="DATA_FINE"/>
+    <result property="nome" column="NOME"/>
+    <result property="descrizione" column="DESCRIZIONE"/>
+    <result property="societaOrganizzatrice" column="SOCIETA_ORGANIZZATRICE" select="getSocietaOrganizzatrice" />
+  </resultMap>
+  <select id="getCompetizioneCategoria" resultMap="CompetizioneResult">
+  	select * from COMPETIZIONE where ID_COMPETIZIONE = #idCompetizione#
+  </select>
+  
+  <select id="listCategoriaCompetizione" resultMap="CategoriaCompetizioneResult">
+    select * from CATEGORIA_COMPETIZIONE
+  </select>
+  
+  <select id="selectCategoriaCompetizione" resultMap="CategoriaCompetizioneResult">
+  
+    select 	
+    		
+    		CC.ID_CATEGORIA_COMPETIZIONE as idCategoriaCompetizione,
+    		
+    		CC.CATEGORIA as "categoria.idCategoria",
+    			CAT.NOME_CATEGORIA as "categoria.nomeCategoria",
+    			CAT.SESSO as "categoria.sesso",
+    			CAT.ANNO_PARTENZA as "categoria.annoPartenza",
+    			CAT.ANNO_FINE as "categoria.annoFine",
+    		 
+    		 CC.COMPETIZIONE as "competizione.idCompetizione",
+    		 	COMP.DATA_INIZIO as "competizione.dataInizio",
+    		 	COMP.DATA_FINE as "competizione.dataFine",
+    		 	COMP.NOME as "competizione.nome",
+    		 	COMP.DESCRIZIONE as "competizione.descrizione",
+    		 	COMP.SOCIETA_ORGANIZZATRICE as "competizione.societaOrganizzatrice.idSocieta",
+    		 		S.NOME_SOCIETA as "competizione.societaOrganizzatrice.nomeSocieta"
+    		 	
+    from 	CATEGORIA_COMPETIZIONE CC, CATEGORIA CAT, COMPETIZIONE COMP, SOCIETA S
+    
+    where	CC.ID_CATEGORIA_COMPETIZIONE = #idCategoriaCompetizione#
+    		AND CC.CATEGORIA = CAT.ID_CATEGORIA
+    		AND CC.COMPETIZIONE = COMP.ID_COMPETIZIONE
+    		AND COMP.SOCIETA_ORGANIZZATRICE = S.ID_SOCIETA
+    		
+  </select>
+   
+  <insert id="insertCategoriaCompetizione" parameterClass="CategoriaCompetizione">
+    
+    insert 
+    into 	CATEGORIA_COMPETIZIONE 
+    		( ID_CATEGORIA_COMPETIZIONE, CATEGORIA,               COMPETIZIONE                  ) 
+   	values 	( #idCategoriaCompetizione#, #categoria.idCategoria#, #competizione.idCompetizione# )
+   	
+  </insert>
+
+  <update id="updateCategoriaCompetizione" parameterClass="CategoriaCompetizione">
+    
+    update CategoriaCompetizione set
+      
+      ID_CATEGORIA_COMPETIZIONE 	= #idCategoriaCompetizione#,
+      CATEGORIA 					= #categoria.idCategoria#,
+      COMPETIZIONE 					= #competizione.idCompetizione#
+    
+    where
+      
+      ID_CATEGORIA_COMPETIZIONE = #idCategoriaCompetizione#
+      
+  </update>
+
+  <delete id="deleteCategoriaCompetizione" parameterClass="int">
+    delete from CATEGORIA_COMPETIZIONE where ID_CATEGORIA_COMPETIZIONE = #idCategoriaCompetizione#
+  </delete>
+
+</sqlMap>

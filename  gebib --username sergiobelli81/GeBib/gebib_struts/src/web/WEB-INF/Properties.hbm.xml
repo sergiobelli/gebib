@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30-ott-2007 15.04.33 by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="eu.sergiobelli.gebib.model.orm.data.Properties" table="properties" catalog="biblioteca">
+        <comment></comment>
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="key" type="string">
+            <column name="KEY" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="value" type="string">
+            <column name="VALUE" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+    </class>    
+</hibernate-mapping>

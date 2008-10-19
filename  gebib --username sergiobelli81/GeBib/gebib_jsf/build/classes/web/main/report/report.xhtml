@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="../template/Template.xhtml">
+	
+		<ui:define name="title">
+			
+		</ui:define>
+		
+		<ui:define name="body">
+    
+        	<h:form>
+            	
+            	<h:panelGrid columns="1" styleClass="FacetFormTABLE" columnClasses="FacetFieldCaptionTD,FacetDataTD">
+            	
+	            	<h:outputText value="Interfaccia di generazione del report" styleClass="FacetFieldCaptionTD"/>
+	            		
+	            	<h:panelGrid columns="2" styleClass="FacetFormTABLE" columnClasses="FacetFieldCaptionTD,FacetDataTD">
+	            						
+						<h:outputText value="Nome biblioteca"/>
+	            		<h:inputText value="#{ReportManager.nomeCollezione}" validator="#{ReportValidator.validateNomeCollezione}" class="FacetInput" />
+						
+						<h:outputText value="Percorso"/>
+	            		<h:inputText value="#{ReportManager.percorso}" validator="#{ReportValidator.validatePercorso}" class="FacetInput" />
+						
+						<h:outputText value="Nome file"/>
+	            		<h:inputText value="#{ReportManager.nome}" validator="#{ReportValidator.validateNome}" class="FacetInput" />
+	
+						<h:outputText value="Estensione"/>
+	            		<h:inputText value="#{ReportManager.estensione}" validator="#{ReportValidator.validateEstensione}" class="FacetInput" />
+	            		
+	            		<h:outputText value="Visualizza report"/>
+	            		<h:selectBooleanCheckbox value="#{ReportManager.visualizza}" />
+	            		
+		            	<h:outputText value="&nbsp;"/>
+		            	<h:commandButton action="#{ReportManager.redirect}" actionListener="#{ReportManager.generateReport}" value="Genera" class="FacetButton" />
+						
+					</h:panelGrid>
+				
+				</h:panelGrid>
+				
+			</h:form>
+					
+		</ui:define>
+	
+	</ui:composition>
+
+</html>

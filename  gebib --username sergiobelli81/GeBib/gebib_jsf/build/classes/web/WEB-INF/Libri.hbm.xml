@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-nov-2007 10.57.48 by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="eu.sergiobelli.gebib.model.orm.data.Libri" table="libri" catalog="biblioteca">
+        <comment></comment>
+        <id name="idLibro" type="int">
+            <column name="ID_LIBRO" />
+            <generator class="increment" />
+        </id>
+        <property name="titolo" type="string">
+            <column name="TITOLO" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="isbn" type="string">
+            <column name="ISBN" length="17">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

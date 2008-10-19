@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="../template/Template.xhtml">
+	
+		<ui:define name="title">
+			
+		</ui:define>
+		
+		<ui:define name="body">
+    		
+    		<h:form>
+            	
+            	<h:panelGrid columns="1" styleClass="FacetFormTABLE" columnClasses="FacetFieldCaptionTD,FacetDataTD">
+            	
+	            	<h:outputText value="Elenco libri" styleClass="FacetFieldCaptionTD"/>
+	    			
+	    			<h:dataTable 
+		            		id="ElencoLibri" 
+		            		value="#{ElencoLibriExecuter.libri}" 
+		            		var="libro" 
+		            		headerClass="FacetFieldCaptionTD"
+		            		rowClasses="FacetDataTD"
+		            		columnClasses="FacetDataTD"
+		            		styleClass="FacetFormTABLE">
+		            
+		            	<h:column>
+		                	<f:facet name="header">
+		                    	<h:outputText value="Titolo"/>
+		                    </f:facet>
+		                    <h:outputText value="#{libro.titolo}"/>
+		                </h:column>
+		            
+		            	<h:column>
+		                	<f:facet name="header">
+		                    	<h:outputText value="Isbn"/>
+		                    </f:facet>
+		                    <h:outputText value="#{libro.isbn}"/>
+		                </h:column>
+		
+						<h:column>
+		                	<f:facet name="header">
+		                    	<h:outputText value="Autori"/>
+		                    </f:facet>
+		                    <h:outputText value="#{libro.listaAutori}"/>
+		                </h:column>
+		                
+		                <h:column>
+		                	<f:facet name="header">
+		                    	<h:outputText value="Operazioni"/>
+		                    </f:facet>
+		                    
+	                        <h:commandLink actionListener="#{ModificaLibroExecuter.load}" action="#{ModificaLibroExecuter.modificaLibro}" styleClass="FacetSorterLink">
+		                    	<h:outputText value="Modifica"/>
+		                        <f:attribute name="idLibro" value="#{libro.idLibro}" />
+		                    </h:commandLink>
+	                        
+	                        <h:outputText value=" "/>
+		                    <h:commandLink actionListener="#{ModificaLibroExecuter.load}" action="#{ModificaLibroExecuter.eliminaLibro}" styleClass="FacetSorterLink">
+		                    	<h:outputText value="Elimina"/>
+		                        <f:attribute name="idLibro" value="#{libro.idLibro}" />
+		                    </h:commandLink>
+	                        
+	                    </h:column>
+	                    
+		            </h:dataTable>
+			
+				</h:panelGrid>
+				
+			</h:form>
+					
+		</ui:define>
+	
+	</ui:composition>
+
+</html>
